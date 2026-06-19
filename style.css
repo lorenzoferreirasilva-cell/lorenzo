@@ -1,1 +1,37 @@
+document.getElementById('btn-analisar').addEventListener('click', function() {
+    // 1. Simulação de requisição de API (Gerando dados climáticos realistas)
+    // Geralmente zonas urbanas variam entre 24°C e 32°C em dias quentes
+    const tempUrbana = (Math.random() * (32.5 - 25.0) + 25.0).toFixed(1);
+    // Zonas rurais costumam ser de 2°C a 5°C mais frias
+    const tempRural = (tempUrbana - (Math.random() * (5.0 - 1.5) + 1.5)).toFixed(1);
+    
+    // Umidade relativa do ar (geralmente menor na cidade devido ao asfalto)
+    const umiUrbana = Math.floor(Math.random() * (60 - 45) + 45);
+    const umiRural = Math.floor(umiUrbana + (Math.random() * (15 - 5) + 5));
 
+    // 2. Cálculo do Delta T (Fórmula do seu projeto)
+    const deltaT = (tempUrbana - tempRural).toFixed(1);
+
+    // 3. Inserindo os dados extraídos no HTML
+    document.getElementById('temp-urbana').innerText = tempUrbana;
+    document.getElementById('umi-urbana').innerText = umiUrbana;
+    
+    document.getElementById('temp-rural').innerText = tempRural;
+    document.getElementById('umi-rural').innerText = umiRural;
+    
+    document.getElementById('delta-t-val').innerText = deltaT;
+
+    // 4. Analisando a intensidade da Ilha de Calor Urbana (ICU)
+    const mensagemElement = document.getElementById('mensagem-icu');
+    if (deltaT > 0) {
+        mensagemElement.innerHTML = `⚠️ ICU Detectada! A cidade está <strong>${deltaT}°C</strong> mais quente que o campo.`;
+        mensagemElement.style.color = '#f97316'; // Laranja de alerta
+    } else {
+        mensagemElement.innerHTML = '✅ Microclimas equilibrados no período analisado.';
+        mensagemElement.style.color = '#34d399'; // Verde estável
+    }
+
+    // 5. Exibir o painel de resultados com efeito
+    const painel = document.getElementById('painel-clima');
+    painel.style.display = 'grid';
+});
