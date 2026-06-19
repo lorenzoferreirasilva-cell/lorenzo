@@ -1,1 +1,33 @@
+<section id="funcionamento">
+    <h2>📊 Como o Projeto Funciona</h2>
+    <p>O script principal coleta dados de coordenadas geográficas específicas (uma estação urbana e uma estação rural próxima). A partir disso, calcula a diferença térmica média utilizando a fórmula básica da intensidade da Ilha de Calor:</p>
+    
+    <div class="formula-box">
+        <div class="formula">ΔT = T<sub>urbana</sub> - T<sub>rural</sub></div>
+        <p style="margin: 0; font-size: 0.95rem;">Se <strong>ΔT &gt; 0</strong>, o gráfico destaca a intensidade do aquecimento urbano no período analisado.</p>
+    </div>
 
+    <div style="text-align: center; margin-top: 30px;">
+        <button id="btn-analisar" class="btn-clima">Simular Análise em Tempo Real</button>
+    </div>
+
+    <div id="painel-clima" class="clima-dashboard" style="display: none;">
+        <div class="clima-card urbano">
+            <h4>Zona Urbana 🏙️</h4>
+            <p>Temperatura: <span id="temp-urbana">--</span>°C</p>
+            <p>Umidade: <span id="umi-urbana">--</span>%</p>
+        </div>
+        <div class="clima-card rural">
+            <h4>Zona Rural 🌳</h4>
+            <p>Temperatura: <span id="temp-rural">--</span>°C</p>
+            <p>Umidade: <span id="umi-rural">--</span>%</p>
+        </div>
+        <div class="clima-card resultado-icu">
+            <h4>Intensidade da ICU 🔬</h4>
+            <p class="delta-t">ΔT = <span id="delta-t-val">--</span>°C</p>
+            <p id="mensagem-icu" style="font-size: 0.9rem; margin: 0;"></p>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
